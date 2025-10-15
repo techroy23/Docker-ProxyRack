@@ -77,13 +77,13 @@ proxyrack_add() {
                 touch "${LOCK_FILE}"
                 return 0
             elif echo "$details" | grep -qi "Device not found"; then
-                echo " >>> ProxyRack >>> Device not found yet, retrying in 1 minute..."
-                sleep 60
+                echo " >>> ProxyRack >>> Device not found yet, retrying in 6 minute..."
+                sleep 360
                 continue
             else
-                echo " >>> ProxyRack >>> Unhandled error. Full response below:"
+                echo " >>> ProxyRack >>> Unhandled error. Retrying in 6 minute..."
                 echo "$response"
-                sleep 60
+                sleep 360
                 continue
             fi
 
