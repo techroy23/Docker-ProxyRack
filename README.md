@@ -37,13 +37,10 @@ cat /dev/urandom | LC_ALL=C tr -dc 'A-F0-9' | dd bs=1 count=64 2>/dev/null && ec
 ## Run
 ```bash
 docker run -d \
-  --name=ProxyRack \
-  --pull=always \
-  --restart=always \
-  --privileged \
-  --log-driver=json-file \
-  --log-opt max-size=5m \
-  --log-opt max-file=3 \
+  --name=proxyrack \
+  --cpus=0.25 --pull=always --restart=always \
+  --log-driver=json-file --log-opt max-size=1m --log-opt max-file=1 \
+  --cap-add=NET_ADMIN --cap-add=NET_RAW --sysctl net.ipv4.ip_forward=1 \
   -e TOKEN=Your-TOKEN-Here \
   -e API_KEY=Your-API-Here \
   -e DEVICE_NAME=Your-Device-Name-Here \
